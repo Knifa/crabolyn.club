@@ -96,8 +96,9 @@ export function Crabolyn() {
         backgroundColor: "var(--primary)",
         borderRadius: "16px",
         filter: "drop-shadow(8px 8px 0 var(--shadow))",
-        width: "80%",
+        width: "70%",
         margin: "auto",
+        transform: "rotate(10deg)",
       }}
       ref={ref}
       width={256}

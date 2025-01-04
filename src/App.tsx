@@ -53,7 +53,11 @@ export function App() {
     <>
       <HueRotate />
       <Container>
-        <h1>crabolyn club</h1>
+        <h1>
+          crabolyn
+          <br />
+          club
+        </h1>
         <Crabolyn />
         <Links>
           <a href="/crabolyn/crabolyn.stl" download>
