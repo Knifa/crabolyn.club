@@ -44,7 +44,7 @@ const Container = styled.div({
 const Crabolyainer = styled.div({
   display: "flex",
   flexDirection: "column",
-  transform: "rotate(10deg)",
+  transform: "translateX(-10px) rotate(7.5deg)",
 
   h1: {
     color: "var(--primary)",
