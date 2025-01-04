@@ -56,10 +56,10 @@ export function App() {
         <h1>crabolyn club</h1>
         <Crabolyn />
         <Links>
-          <a href="/crabolyn.stl" download>
+          <a href="/crabolyn/crabolyn.stl" download>
             .stl
           </a>
-          <a href="/crabolyn_raw.zip" download>
+          <a href="/crabolyn/crabolyn_raw.zip" download>
             .obj (raw)
           </a>
         </Links>
