@@ -1,5 +1,5 @@
 import "@fontsource/maple-mono/400.css";
-import "@fontsource/maple-mono/600.css";
+import "@fontsource/maple-mono/800.css";
 
 import "./App.css";
 
@@ -41,6 +41,22 @@ const Container = styled.div({
   padding: "32px",
 });
 
+const Crabolyainer = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  transform: "rotate(10deg)",
+
+  h1: {
+    color: "var(--primary)",
+    fontSize: "4rem",
+    textAlign: "center",
+    fontWeight: 800,
+    lineHeight: 1,
+    margin: "0 0 16px",
+    filter: "drop-shadow(2px 2px 0 var(--shadow))",
+  },
+});
+
 const Links = styled.div({
   display: "flex",
   gap: "16px",
@@ -53,18 +69,20 @@ export function App() {
     <>
       <HueRotate />
       <Container>
-        <h1>
-          crabolyn
-          <br />
-          club
-        </h1>
-        <Crabolyn />
+        <Crabolyainer>
+          <h1>
+            crabolyn
+            <br />
+            club
+          </h1>
+          <Crabolyn />
+        </Crabolyainer>
         <Links>
           <a href="/crabolyn/crabolyn.stl" download>
-            .stl
+            <span>.stl</span>
           </a>
           <a href="/crabolyn/crabolyn_raw.zip" download>
-            .obj (raw)
+            <span>.obj (raw)</span>
           </a>
         </Links>
       </Container>

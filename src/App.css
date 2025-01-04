@@ -3,35 +3,41 @@
 
   --primary: hsl(var(--hue), 40%, 60%);
   --secondary: hsl(var(--hue), 40%, 40%);
+  --tertiary: hsl(calc(180 + var(--hue)), 40%, 80%);
 
   --shadow: hsla(var(--hue), 40%, 20%, 0.8);
 }
 
 body {
-  background-image: radial-gradient(#ccc 4px, transparent 4px),
-    radial-gradient(#ccc 4px, transparent 4px);
-  background-size: 80px 80px;
+  --bg-hue: calc(30 + var(--hue));
+  --bg-col: hsl(var(--bg-hue), 20%, 80%);
+  --bg-grad-col: hsl(var(--bg-hue), 20%, 77%);
+
+  background-image: radial-gradient(var(--bg-grad-col) 16px, transparent 16px),
+    radial-gradient(var(--bg-grad-col) 16px, transparent 16px);
+  background-size: 128px 128px;
   background-position:
     0 0,
-    40px 40px;
-  background-color: #eaeaea;
+    64px 64px;
+  background-color: var(--bg-col);
   background-repeat: repeat;
+  animation: scroll-background 5s linear infinite;
 
-  font-family: "Roboto Mono", monospace;
+  font-family: "Maple Mono", monospace;
 }
 
-h1 {
-  color: var(--primary);
-  font-size: 3.5rem;
-  text-align: center;
-  font-weight: bold;
-  margin: 0;
-  filter: drop-shadow(4px 4px 0 var(--shadow));
+@keyframes scroll-background {
+  0% {
+    background-position: 0 0, 64px 64px;
+  }
+  100% {
+    background-position: 64px 64px, 128px 128px;
+  }
 }
 
 a {
-  background-color: #222;
-  color: white;
+  background-color: var(--tertiary);
+  color: black;
   filter: drop-shadow(8px 8px 0 var(--shadow));
 
   font-size: 1.5rem;
@@ -44,6 +50,11 @@ a {
 }
 
 a:hover {
+  color: white;
   background-color: var(--primary);
-  color: black;
+}
+
+a span {
+  color: #fff;
+  mix-blend-mode: difference;
 }
