@@ -5,11 +5,12 @@
   --secondary: hsl(var(--hue), 40%, 40%);
   --tertiary: hsl(calc(180 + var(--hue)), 40%, 80%);
 
-  --shadow: hsla(var(--hue), 40%, 20%, 0.8);
+  --shadow: hsla(var(--hue), 40%, 20%, 0.9);
+  --shadow-inverse: hsla(calc(180 + var(--hue)), 40%, 20%, 0.9);
 }
 
 body {
-  --bg-hue: calc(30 + var(--hue));
+  --bg-hue: calc(270 + var(--hue));
   --bg-col: hsl(var(--bg-hue), 20%, 80%);
   --bg-grad-col: hsl(var(--bg-hue), 20%, 77%);
 
@@ -21,12 +22,12 @@ body {
     64px 64px;
   background-color: var(--bg-col);
   background-repeat: repeat;
-  animation: scroll-background 5s linear infinite;
+  animation: bg-scroll 5s linear infinite;
 
   font-family: "Maple Mono", monospace;
 }
 
-@keyframes scroll-background {
+@keyframes bg-scroll {
   0% {
     background-position: 0 0, 64px 64px;
   }
@@ -51,10 +52,45 @@ a {
 
 a:hover {
   color: white;
+  text-decoration: underline;
+  text-decoration-thickness: 0.15rem;
   background-color: var(--primary);
+  filter: drop-shadow(8px 8px 0 var(--shadow-inverse));
+
+  animation:
+    a-wiggle-start 0.25s 1 ease-in-out,
+    a-wiggle-loop 1s 0.25s ease-in-out infinite;
 }
 
-a span {
-  color: #fff;
-  mix-blend-mode: difference;
+@keyframes a-wiggle-start {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes a-wiggle-loop {
+  0% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes h1-wiggle {
+  0% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
 }

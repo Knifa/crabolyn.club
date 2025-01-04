@@ -53,7 +53,8 @@ const Crabolyainer = styled.div({
     fontWeight: 800,
     lineHeight: 1,
     margin: "0 0 16px",
-    filter: "drop-shadow(2px 2px 0 var(--shadow))",
+    filter: "drop-shadow(2px 2px 0 var(--shadow-inverse))",
+    animation: "h1-wiggle 5s ease-in-out infinite",
   },
 });
 
@@ -61,6 +62,7 @@ const Links = styled.div({
   display: "flex",
   gap: "16px",
   justifyContent: "center",
+  alignItems: "center",
   flexDirection: "column",
 });
 
@@ -79,10 +81,10 @@ export function App() {
         </Crabolyainer>
         <Links>
           <a href="/crabolyn/crabolyn.stl" download>
-            <span>.stl</span>
+            .stl
           </a>
           <a href="/crabolyn/crabolyn_raw.zip" download>
-            <span>.obj (raw)</span>
+            .obj (raw)
           </a>
         </Links>
       </Container>

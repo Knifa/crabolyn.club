@@ -65,13 +65,12 @@ export function Crabolyn() {
       lastTimestamp = timestamp;
       const deltaSecs = delta / 1000;
 
-      const hue = Number(
-        document.documentElement.style.getPropertyValue("--hue"),
-      );
+      const hue =
+        180 + Number(document.documentElement.style.getPropertyValue("--hue"));
       (crabolyn.material as THREE.MeshPhysicalMaterial).color.setHSL(
         hue / 360,
         1.0,
-        0.6,
+        0.6
       );
 
       crabolyn.rotation.y += 0.2 * deltaSecs;
@@ -95,9 +94,9 @@ export function Crabolyn() {
       css={{
         backgroundColor: "var(--primary)",
         borderRadius: "16px",
-        filter: "drop-shadow(8px 8px 0 var(--shadow))",
+        filter: "drop-shadow(8px 8px 0 var(--shadow-inverse))",
         width: "70%",
-        margin: "auto",
+        margin: "0 auto",
       }}
       ref={ref}
       width={256}
