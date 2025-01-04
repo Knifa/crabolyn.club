@@ -66,12 +66,12 @@ export function Crabolyn() {
       const deltaSecs = delta / 1000;
 
       const hue = Number(
-        document.documentElement.style.getPropertyValue("--hue")
+        document.documentElement.style.getPropertyValue("--hue"),
       );
       (crabolyn.material as THREE.MeshPhysicalMaterial).color.setHSL(
         hue / 360,
         1.0,
-        0.6
+        0.6,
       );
 
       crabolyn.rotation.y += 0.2 * deltaSecs;
