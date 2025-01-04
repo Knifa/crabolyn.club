@@ -1,14 +1,12 @@
-import { css } from "@emotion/css";
 import * as THREE from "three";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 
 import { useEffect, useRef } from "react";
-import { useHue } from "./HueProvider";
 
 async function loadModel() {
   const loader = new STLLoader();
 
-  const geometry = await loader.loadAsync("public/crabolyn/crabolyn.stl");
+  const geometry = await loader.loadAsync("/crabolyn/crabolyn.stl");
   geometry.center();
   geometry.rotateX(-Math.PI * 0.5);
 
@@ -17,12 +15,7 @@ async function loadModel() {
 }
 
 export function Crabolyn() {
-  const { hueRef } = useHue();
   const ref = useRef<HTMLCanvasElement>(null);
-
-  const classNames = css({
-    width: "70%",
-  });
 
   useEffect(() => {
     if (!ref.current) {
@@ -38,8 +31,8 @@ export function Crabolyn() {
 
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(10, 1, 0.1, 1000);
-    camera.position.set(0, 0, 7);
+    const camera = new THREE.PerspectiveCamera(5, 1, 0.1, 1000);
+    camera.position.set(0, 0, 15);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.33);
     scene.add(ambientLight);
@@ -51,9 +44,9 @@ export function Crabolyn() {
     let crabolyn: THREE.Mesh;
     loadModel().then((mesh) => {
       const material = new THREE.MeshPhysicalMaterial({
-        color: 0xbb55ff,
-        roughness: 0.3,
-        metalness: 0.5,
+        color: new THREE.Color("hsl(270, 80%, 60%)"),
+        roughness: 0.2,
+        metalness: 0.1,
       });
       mesh.material = material;
       scene.add(mesh);
@@ -62,24 +55,23 @@ export function Crabolyn() {
       render();
     });
 
-    let running = true;
+    let handle: number | null = null;
     let lastTimestamp = 0;
 
     function render(timestamp: number = 0) {
-      if (!running) {
-        return;
-      }
-
-      requestAnimationFrame(render);
+      handle = requestAnimationFrame(render);
 
       const delta = timestamp - lastTimestamp;
       lastTimestamp = timestamp;
       const deltaSecs = delta / 1000;
 
+      const hue = Number(
+        document.documentElement.style.getPropertyValue("--hue")
+      );
       (crabolyn.material as THREE.MeshPhysicalMaterial).color.setHSL(
-        hueRef.current / 360,
-        0.5,
-        0.5
+        hue / 360,
+        1.0,
+        0.6
       );
 
       crabolyn.rotation.y += 0.2 * deltaSecs;
@@ -90,12 +82,28 @@ export function Crabolyn() {
     }
 
     return () => {
-      running = false;
+      if (handle !== null) {
+        cancelAnimationFrame(handle);
+      }
+
       renderer.dispose();
     };
-  }, [hueRef, ref]);
+  }, [ref]);
 
-  return <canvas className={classNames} ref={ref} width={512} height={512} />;
+  return (
+    <canvas
+      css={{
+        backgroundColor: "var(--primary)",
+        borderRadius: "16px",
+        filter: "drop-shadow(8px 8px 0 var(--shadow))",
+        width: "80%",
+        margin: "auto",
+      }}
+      ref={ref}
+      width={256}
+      height={256}
+    />
+  );
 }
 
 export default Crabolyn;

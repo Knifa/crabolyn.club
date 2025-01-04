@@ -1,76 +1,70 @@
-import "@fontsource/roboto-mono/400.css";
+import "@fontsource/maple-mono/400.css";
+import "@fontsource/maple-mono/600.css";
+
 import "./App.css";
 
-import { css } from "@emotion/css";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { useEffect, useRef } from "react";
-
+import { useEffect } from "react";
 import Crabolyn from "./Crabolyn";
-import { HueProvider, useHue } from "./HueProvider";
+import styled from "@emotion/styled";
 
-const theme = createTheme({
-  typography: {
-    fontFamily: ["Roboto Mono", "monospace"].join(","),
-  },
-  palette: {
-    mode: "light",
-  },
-});
-
-export function AppContainer({ children }: { children: React.ReactNode }) {
-  const { hueRef } = useHue();
-  const ref = useRef<HTMLDivElement>(null);
-
-  const className = css({
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-    width: "100vw",
-    overflow: "hidden",
-  });
-
+export function HueRotate() {
   useEffect(() => {
-    let running = true;
+    let handle: number | null = null;
+    let hue = 0;
 
-    function update() {
-      if (!running) {
-        return;
-      }
-      if (!ref.current) {
-        return;
-      }
-
-      ref.current.style.backgroundColor = `hsl(${hueRef.current}, 50%, 80%)`;
-
-      requestAnimationFrame(update);
+    function updateHue(timestamp: number = 0) {
+      hue = (timestamp * 0.01) % 360;
+      document.documentElement.style.setProperty("--hue", `${hue}`);
+      handle = requestAnimationFrame(updateHue);
     }
 
-    update();
+    updateHue();
 
     return () => {
-      running = false;
+      if (handle !== null) {
+        cancelAnimationFrame(handle);
+      }
     };
-  }, [hueRef]);
+  }, []);
 
-  return (
-    <div className={className} ref={ref}>
-      {children}
-    </div>
-  );
+  return null;
 }
+
+const Container = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  gap: "32px",
+  height: "100vh",
+  justifyContent: "space-evenly",
+  margin: "auto",
+  maxWidth: "512px",
+  padding: "32px",
+});
+
+const Links = styled.div({
+  display: "flex",
+  gap: "16px",
+  justifyContent: "center",
+  flexDirection: "column",
+});
 
 export function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <HueProvider>
-        <AppContainer>
-          <Crabolyn />
-        </AppContainer>
-      </HueProvider>
-    </ThemeProvider>
+    <>
+      <HueRotate />
+      <Container>
+        <h1>crabolyn club</h1>
+        <Crabolyn />
+        <Links>
+          <a href="/crabolyn.stl" download>
+            .stl
+          </a>
+          <a href="/crabolyn_raw.zip" download>
+            .obj (raw)
+          </a>
+        </Links>
+      </Container>
+    </>
   );
 }
 
