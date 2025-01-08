@@ -1,0 +1,39 @@
+[
+  {
+    "name": "crabolyn",
+    "color": "#181818",
+    "fullPath": "crabolyn_full.jpg",
+    "thumbPath": "crabolyn_thumb.jpg"
+  },
+  {
+    "name": "true crabolyn",
+    "color": "#686868",
+    "fullPath": "true-crabolyn_full.jpg",
+    "thumbPath": "true-crabolyn_thumb.jpg"
+  },
+  {
+    "name": "fractolyn",
+    "color": "#888888",
+    "fullPath": "fractolyn_full.jpg",
+    "thumbPath": "fractolyn_thumb.jpg"
+  },
+  {
+    "name": "carolith",
+    "color": "#b8b8b8",
+    "fullPath": "carolith_full.jpg",
+    "thumbPath": "carolith_thumb.jpg"
+  },
+
+  {
+    "name": "laserlyn",
+    "color": "#808008",
+    "fullPath": "laserlyn_full.jpg",
+    "thumbPath": "laserlyn_thumb.jpg"
+  },
+  {
+    "name": "mickeylyn",
+    "color": "#181808",
+    "fullPath": "mickeylyn_full.jpg",
+    "thumbPath": "mickeylyn_thumb.jpg"
+  }
+]

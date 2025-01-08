@@ -14,15 +14,6 @@ body {
   --bg-col: hsl(var(--bg-hue), 20%, 80%);
   --bg-grad-col: hsl(var(--bg-hue), 20%, 77%);
 
-  /* background-image: radial-gradient(var(--bg-grad-col) 16px, transparent 16px),
-    radial-gradient(var(--bg-grad-col) 16px, transparent 16px);
-  background-size: 128px 128px;
-  background-position:
-    0 0,
-    64px 64px;
-  background-color: var(--bg-col);
-  background-repeat: repeat; */
-
   background-image: url("/bg.png"), url("/bg.png");
   background-color: var(--bg-col);
   background-size: 256px 256px;
@@ -31,6 +22,7 @@ body {
   animation: bg-scroll 10s linear infinite;
 
   font-family: "Maple Mono", monospace;
+  font-weight: 400;
 }
 
 @keyframes bg-scroll {
@@ -39,53 +31,6 @@ body {
   }
   100% {
     background-position: 128px 128px, 256px 256px;
-  }
-}
-
-a {
-  background-color: var(--tertiary);
-  color: black;
-  filter: drop-shadow(8px 8px 0 var(--shadow));
-
-  font-size: 1.5rem;
-  text-align: center;
-  text-decoration: none;
-
-  border-radius: 16px;
-  display: block;
-  padding: 1rem;
-}
-
-a:hover {
-  color: white;
-  text-decoration: underline;
-  text-decoration-thickness: 0.15rem;
-  background-color: var(--primary);
-  filter: drop-shadow(8px 8px 0 var(--shadow-inverse));
-
-  animation:
-    a-wiggle-start 0.25s 1 ease-in-out,
-    a-wiggle-loop 1s 0.25s ease-in-out infinite;
-}
-
-@keyframes a-wiggle-start {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(2deg);
-  }
-}
-
-@keyframes a-wiggle-loop {
-  0% {
-    transform: rotate(2deg);
-  }
-  50% {
-    transform: rotate(-2deg);
-  }
-  100% {
-    transform: rotate(2deg);
   }
 }
 
