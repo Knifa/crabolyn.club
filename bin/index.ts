@@ -32,8 +32,7 @@ async function processImages() {
       position: "center",
     };
 
-    const image = sharp(inputPath)
-      .rotate();
+    const image = sharp(inputPath).rotate();
     const imageStats = await image.stats();
 
     await image

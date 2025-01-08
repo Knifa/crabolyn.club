@@ -112,7 +112,7 @@ const LinkContainer = styled.div({
         ${linkWiggleLoop} 1s 0.25s ease-in-out infinite
       `,
     },
-  }
+  },
 });
 
 export function App() {

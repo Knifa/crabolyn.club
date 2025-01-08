@@ -70,7 +70,7 @@ export function Crabolyn() {
       (crabolyn.material as THREE.MeshPhysicalMaterial).color.setHSL(
         hue / 360,
         1.0,
-        0.6
+        0.6,
       );
 
       crabolyn.rotation.y += 0.2 * deltaSecs;

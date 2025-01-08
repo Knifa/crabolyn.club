@@ -17,7 +17,9 @@ body {
   background-image: url("/bg.png"), url("/bg.png");
   background-color: var(--bg-col);
   background-size: 256px 256px;
-  background-position: 0 0, 128px 128px;
+  background-position:
+    0 0,
+    128px 128px;
   background-repeat: repeat;
   animation: bg-scroll 10s linear infinite;
 
@@ -27,10 +29,14 @@ body {
 
 @keyframes bg-scroll {
   0% {
-    background-position: 0 0, 128px 128px;
+    background-position:
+      0 0,
+      128px 128px;
   }
   100% {
-    background-position: 128px 128px, 256px 256px;
+    background-position:
+      128px 128px,
+      256px 256px;
   }
 }
 

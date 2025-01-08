@@ -1,7 +1,5 @@
 import crabalogue from "./crabalogue.json";
 
-import styled from "@emotion/styled";
-
 interface CrabolynEntry {
   name: string;
   color: string;
@@ -45,7 +43,7 @@ const ImageLoader = ({
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const currentImgRef = fallbackRef.current;
@@ -73,7 +71,11 @@ const ImageLoader = ({
     >
       {isVisible && (
         <img
-          css={{ animation: `${fadeIn} 0.5s ease-out`, width: "100%", aspectRatio: "1/1" }}
+          css={{
+            animation: `${fadeIn} 0.5s ease-out`,
+            width: "100%",
+            aspectRatio: "1/1",
+          }}
           src={src}
           alt={alt}
         />
@@ -114,7 +116,9 @@ function Entry({ entry }: { entry: CrabolynEntry }) {
           fontWeight: "400",
           margin: "0 0 16px",
         }}
-      >{name}</h2>
+      >
+        {name}
+      </h2>
       <ImageLoader color={color} src={`./crabalogue/${thumbPath}`} alt={name} />
     </div>
   );
